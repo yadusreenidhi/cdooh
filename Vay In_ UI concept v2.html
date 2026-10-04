@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Vay In: UI concept v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;--bg:#F4F6FA;--card:#fff;--ink:#14213D;--mut:#667085;--line:#E1E6EE;--pri:#1E4FD8;--pril:#E8EEFC;--ok:#12A150;--ff:#E39B00;--so:#B4BBC8;--bad:#D6453D;--map:#EEF2F8;--sea:#DCE9F5}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 24px;flex-wrap:wrap}
+.logo{font-weight:600;font-size:20px;padding:12px 0}.logo b{color:var(--pri)}.logo i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#F5A524;margin-left:3px}
+nav{display:flex;flex:1;overflow-x:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);font:500 14px inherit;font-family:inherit;padding:18px 14px 15px;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--pri);border-color:var(--pri)}
+.hr{display:flex;gap:10px;align-items:center;color:var(--mut)}
+.av{width:30px;height:30px;border-radius:50%;background:var(--pril);color:var(--pri);display:grid;place-items:center;font-weight:600;font-size:12px}
+main{max-width:1240px;margin:0 auto;padding:20px 24px}
+h2{font-size:22px;font-weight:600;margin:0 0 2px}h3{font-size:15px;font-weight:600;margin:0 0 8px}
+.sub{color:var(--mut);margin:0 0 14px}.sm{font-size:12px;color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.main2{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+@media(max-width:900px){.g2,.g3,.g4,.main2{grid-template-columns:1fr}}
+.pri{background:var(--pri);color:#fff;border:0;border-radius:6px;padding:9px 16px;font:500 13px inherit;font-family:inherit;cursor:pointer}
+.sec{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px 12px;font:500 13px inherit;font-family:inherit;cursor:pointer}
+input[type=text],select{padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);font:inherit}
+.ai{display:flex;gap:10px;align-items:center;border-left:4px solid var(--pri);margin-bottom:12px}.ai input{flex:1}
+.dates{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+.dt{min-width:62px;text-align:center;padding:8px 6px;border-radius:8px;border:1px solid transparent;background:none;cursor:pointer;font-family:inherit;color:var(--ink)}
+.dt small{display:block;color:var(--mut);font-size:11px}.dt b{font-size:18px;font-weight:600;display:block;line-height:1.2}
+.dt.on{background:var(--pri);color:#fff}.dt.on small{color:#DCE5FF}
+.bar2{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:10px 0;border-top:1px solid var(--line);margin-top:8px}
+.leg{margin-left:auto;display:flex;gap:14px;font-size:12px;color:var(--mut)}.leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.row{padding:14px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}
+.rh{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.rn{font-weight:600;font-size:15px;cursor:pointer}.rn:hover{color:var(--pri)}
+.meta{font-size:12px;color:var(--mut)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:4px;background:var(--bg);color:var(--mut);margin:3px 4px 0 0}
+.mt{font-size:11px;font-weight:600;color:var(--ok);background:#E6F6EC;padding:1px 7px;border-radius:4px;margin-left:6px}
+.lv{font-size:12px;text-align:right;white-space:nowrap}.lv b{font-size:16px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:4px;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}@media(prefers-reduced-motion:reduce){.dot{animation:none}}
+.hs{border:0;background:none;font-size:18px;cursor:pointer;color:var(--mut)}.hs.on{color:var(--bad)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{width:88px;padding:7px 4px;background:#fff;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-family:inherit;color:var(--ink);line-height:1.35}
+.chip b{display:block;font-size:12px;font-weight:600}.chip small{display:block;font-size:11px;color:var(--mut)}
+.chip:hover{border-color:var(--pri)}
+.chip.so{background:var(--bg);cursor:not-allowed;color:var(--so)}.chip.so:hover{border-color:var(--line)}.chip.so b{text-decoration:line-through}.chip.so small{color:var(--so)}
+.chip.on{background:var(--pri);border-color:var(--pri)}.chip.on b,.chip.on small{color:#fff}
+.rh>div:first-child{flex:1}
+.stat{font-size:24px;font-weight:600;line-height:1.1}.stat small{display:block;font-size:12px;font-weight:400;color:var(--mut);margin-top:4px}
+.bar{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;margin:3px 0 9px}.bar i{display:block;height:100%;background:var(--pri)}
+table{width:100%;border-collapse:collapse}td,th{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{color:var(--mut);font-weight:500}
+.step button{width:24px;height:24px;border-radius:5px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal div{padding:7px 0;border-radius:6px;cursor:pointer}.cal .h{color:var(--mut);font-size:11px;cursor:default}
+.cal .on{background:var(--pri);color:#fff}.cal .bad{background:var(--bad);color:#fff}.cal .past{opacity:.35;cursor:default}
+.warn{border-left:4px solid var(--bad);background:#FDF0EF;padding:10px 12px;border-radius:6px;margin-top:12px}
+.heat{display:grid;grid-template-columns:repeat(17,1fr);gap:3px;margin-top:6px}.heat div{height:46px;border-radius:4px;color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center}
+.heat.hl div{height:auto;background:none;color:var(--mut);font-size:10.5px;font-weight:400}
+.grad{height:8px;border-radius:4px;background:linear-gradient(90deg,hsl(120,70%,42%),hsl(60,75%,45%),hsl(0,70%,45%))}
+.kv{display:grid;grid-template-columns:140px 1fr}.kv div{padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}.kv div:nth-child(odd){color:var(--mut)}
+.mini{display:flex;gap:6px;margin-bottom:12px}.mini button{padding:5px 10px;font-size:12px}
+.canvas{aspect-ratio:16/9;background:#EEF2F8;border:1px solid var(--line);border-radius:8px;position:relative;overflow:hidden}
+.zone{position:absolute;border:2px dashed #9AA8C6;border-radius:5px;display:grid;place-items:center;font-size:12px;color:var(--mut);cursor:pointer;background:#fff8}
+.zone.on{border:2px solid var(--pri);color:var(--pri);background:var(--pril)}
+.tl{display:flex;gap:4px;margin:10px 0}.tl div{cursor:pointer;background:var(--pril);color:var(--pri);border-radius:5px;padding:9px 4px;text-align:center;font-weight:600;font-size:12px}
+.pipe{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.pipe span{padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--mut);font-size:12px}.pipe .done{background:var(--ok);border-color:var(--ok);color:#fff}
+.ck{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}.ck b{color:var(--ok);font-weight:600}.ck b.w{color:var(--ff)}
+.cols{display:flex;align-items:flex-end;gap:10px;height:170px;margin-top:20px}
+.cols div{flex:1;background:#9DB6F0;border-radius:4px 4px 0 0;position:relative}.cols div.pk{background:var(--pri)}
+.cols span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:600}
+.lab{display:flex;gap:10px}.lab span{flex:1;text-align:center;font-size:11px;color:var(--mut);margin-top:4px}
+.tl .on{outline:2px solid var(--pri)}.view{display:none}.view.on{display:block}
+.plan li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:12.5px;list-style:none}.plan ul{margin:0;padding:0}
+.plan li button{border:0;background:none;color:var(--bad);cursor:pointer}
+.tot{display:flex;justify-content:space-between;font-size:13px;padding:3px 0}.tot b{font-weight:600}
+</style></head><body>
+<header><div class="logo">Vay<b> In</b><i></i></div><nav id="nav"></nav><div class="hr"><span class="sm">Wallet ₹2,40,000</span><div class="av">AD</div></div></header>
+<main>
+
+<section class="view on" id="v0">
+<h2>Select screens</h2><p class="sub">Pick a date, then choose the time slots you want on each screen.</p>
+<div class="card ai"><div style="flex:1"><h3>Screen advisor</h3><input type="text" style="width:100%" value="Coaching centre launch, target college students, Thrissur and Kochi, evenings"></div><button class="pri" id="rec">Recommend</button></div>
+<div class="main2"><div class="card" style="padding:12px 18px">
+<div class="bar2" style="border:0;margin:0;padding-top:0"><select id="fr"><option value="">All regions</option><option>Kochi</option><option>Thrissur</option><option>Kozhikode</option></select>
+<select id="fi"><option value="">Indoor and outdoor</option><option>Indoor</option><option>Outdoor</option></select>
+<select id="fs"><option value="m">Sort: best match</option><option value="l">Sort: live audience</option><option value="p">Sort: lowest price</option></select>
+</div>
+<div id="list"></div></div>
+<aside class="grid">
+<div class="card plan"><h3>Your plan</h3><div class="sm" style="margin-bottom:6px" id="pd"></div><ul id="pl"></ul>
+<div id="pt" style="margin-top:8px"></div>
+<div style="margin-top:10px"><label class="sm">Budget cap (₹)</label><input type="text" id="bud" value="50000" style="width:100%"></div>
+<button class="pri" style="width:100%;margin-top:12px" id="go2">Continue to compose</button></div>
+<div class="card"><h3>Map</h3><svg viewBox="0 0 300 300" width="100%" id="map"></svg><p class="sm" style="margin:6px 0 0">Number on pin is people watching now.</p></div>
+</aside></div>
+</section>
+
+<section class="view" id="v1">
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><h2 id="dn"></h2><p class="sub" id="dm"></p></div><div><button class="sec" id="back">Back to screens</button> <button class="pri" id="add">Add schedule to plan</button></div></div>
+<div class="grid g4" style="margin-bottom:16px;align-items:start">
+<div class="card"><div class="stat" id="d1"></div></div>
+<div class="card"><div class="stat">29°C<small>Partly cloudy now. Rain expected after 5 pm</small></div></div>
+<div class="card"><div class="stat" id="d3"></div></div>
+<div class="card"><div class="stat" id="d4"></div></div></div>
+<div class="grid g2" style="margin-bottom:16px;align-items:start">
+<div class="card"><h3>Screen details</h3><div class="kv" id="kv"></div></div>
+<div class="card"><h3>Around this screen</h3><div id="near"></div><h3 style="margin-top:16px">Content rules at this location</h3><div id="rules" class="sm"></div></div></div>
+<div class="card" style="margin-bottom:16px"><h3>Audience through the day</h3><div style="overflow-x:auto"><div style="min-width:640px"><div class="heat" id="heat"></div><div class="heat hl" id="hl"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:12px"><span class="sm">Quietest</span><div class="grad" style="width:160px"></div><span class="sm">Busiest</span></div><p class="sm" id="hn" style="margin:6px 0 0"></p></div>
+<div class="grid g3" style="margin-bottom:16px;align-items:start"><div class="card"><h3>Audience type</h3><div id="aud"></div></div><div class="card"><h3>Age group</h3><div id="age"></div></div><div class="card"><h3 id="hwt">How people pass</h3><div id="how"></div></div></div>
+<div class="grid g2" style="align-items:start">
+<div class="card"><h3>Slots per hour</h3><p class="sm">Your content is 40 s. Set repetitions for each block.</p><table><thead><tr><th>Block</th><th>Free</th><th>Repeats / hr</th><th>Cost</th></tr></thead><tbody id="slots"></tbody></table></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="cm" style="margin:0"></h3><div><button class="sec" id="pm" aria-label="Previous month">‹</button> <button class="sec" id="nm" aria-label="Next month">›</button></div></div>
+<p class="sm">Tap days to loop this plan. You can plan up to 12 months ahead.</p>
+<div class="mini"><button class="sec" id="qa">Every day</button><button class="sec" id="qw">Weekdays</button><button class="sec" id="qc">Clear month</button></div>
+<div class="cal" id="cal"></div><div id="conf"></div></div></div>
+</section>
+
+<section class="view" id="v2">
+<h2>Compose</h2><p class="sub">The canvas matches the installed screen resolution: <b>1920 × 1080</b>.</p>
+<div class="grid g2"><div>
+<div class="canvas" id="cv"></div><div class="tl" id="tl"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><label class="sm">Duration <select id="dur"><option>10</option><option>20</option><option>30</option><option selected>40</option><option>60</option></select> s</label><button class="sec" id="spl">Split selected slide</button><button class="sec" id="mrg">Merge with next</button></div>
+<div id="cuts" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"></div><p class="sm" style="margin:8px 0 0">The content plays as one slide. Split it only if you want different content in parts.</p></div>
+<div class="grid">
+<div class="card"><h3>Zone content</h3><p class="sm" id="zi">Select a zone on the canvas.</p><button class="sec">Upload image</button> <button class="sec">Upload video</button> <button class="sec">Upload slides</button> <button class="sec" id="addz">Add zone</button> <button class="sec" id="rmz">Remove zone</button></div>
+<div class="card ai" style="margin:0"><div style="flex:1"><h3>Create with AI</h3><input type="text" style="width:100%" value="Bright poster for a coaching centre, blue and yellow"></div><button class="pri">Generate</button></div>
+<div class="card"><h3>Music overlay</h3><span class="tag">Upbeat intro, 0 to 10 s</span><span class="tag">Calm bed, 10 to 40 s</span><br><button class="sec" style="margin-top:8px">Add track</button></div>
+<div class="card"><h3>Pre-approval check</h3><div class="ck">Resolution fits all selected screens<b>Pass</b></div><div class="ck">Text inside safe area<b>Pass</b></div><div class="ck">Video file size (84 MB)<b class="w">Large</b></div><div class="ck">Restricted content near schools or places of worship<b>Pass</b></div>
+<div style="margin-top:12px"><button class="sec">Preview full composition</button> <button class="pri" id="send">Send for approval</button></div>
+<div class="pipe" id="pipe"></div></div></div></div>
+</section>
+
+<section class="view" id="v3">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><h2>Analytics</h2><p class="sub">Coaching centre launch, 12 to 18 Oct.</p></div><div><button class="sec">Last 7 days</button> <button class="sec">Export report</button></div></div>
+<div class="grid g4" style="margin-bottom:16px">
+<div class="card"><div class="stat">48,210<small>Impressions</small></div></div>
+<div class="card"><div class="stat">21,640<small>Unique viewers</small></div></div>
+<div class="card"><div class="stat">6.4 s<small>Average attention</small></div></div>
+<div class="card"><div class="stat">₹118<small>Cost per 1,000 views</small></div></div></div>
+<div class="grid g2"><div class="card"><h3>Viewers by time slot</h3><div class="cols" id="cols"></div><div class="lab" id="lab"></div></div>
+<div class="card"><h3>Who watched</h3><div id="mix"></div></div></div>
+<div class="card" style="margin-top:16px"><h3>Screen performance</h3><table><thead><tr><th>Screen</th><th>Views</th><th>Students</th><th>Best slot</th></tr></thead><tbody>
+<tr><td>Engineering College Junction</td><td>19,300</td><td>61%</td><td>6 to 9 PM</td></tr><tr><td>MG Road Metro Billboard</td><td>16,480</td><td>38%</td><td>6 to 9 PM</td></tr><tr><td>Lulu Mall Atrium</td><td>12,430</td><td>29%</td><td>3 to 6 PM</td></tr></tbody></table>
+<p class="sm" style="margin:8px 0 0">Suggestion: move 2 repeats from 9 to 11 PM to 6 to 9 PM, where students peak.</p></div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s),R=n=>"₹"+n.toLocaleString("en-IN");
+const sc=[
+{n:"MG Road Metro Billboard",r:"Kochi",io:"Outdoor",sz:"6 × 3 m",l:142,a:118,x:70,y:230,m:84,p:900,t:["Metro 50 m","Restaurants"]},
+{n:"Lulu Mall Atrium",r:"Kochi",io:"Indoor",sz:"85 in",l:310,a:260,x:84,y:212,m:71,p:1400,t:["Shopping","Food court"]},
+{n:"Temple Gate Screen",r:"Thrissur",io:"Outdoor",sz:"4 × 2 m",l:96,a:150,x:100,y:160,m:63,p:600,t:["Temple 40 m","Govt. office"]},
+{n:"Engineering College Junction",r:"Thrissur",io:"Outdoor",sz:"4 × 2 m",l:188,a:170,x:112,y:172,m:92,p:750,t:["College 80 m","Cafés"]},
+{n:"Mananchira Square",r:"Kozhikode",io:"Outdoor",sz:"5 × 2.5 m",l:120,a:105,x:140,y:80,m:55,p:650,t:["Park","Church 300 m"]},
+{n:"SM Street Food Court",r:"Kozhikode",io:"Indoor",sz:"65 in",l:205,a:190,x:152,y:92,m:48,p:800,t:["Restaurants","Mosque 150 m"]}];
+const B=["6–9 AM","9–12 AM","12–3 PM","3–6 PM","6–9 PM","9–11 PM"],dn=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+let sel=new Set,fav=new Set,cur=0,rec=0,dI=0,days=new Set([12,13,14,15,16,17,18].map(d=>"2026-10-"+d)),vy=2026,vm=9,mv="",cf={"2026-10-14":"6–9 PM full (festival eve)","2026-10-15":"6–9 PM full (festival eve)","2026-11-8":"Diwali, 6–9 PM full","2026-12-25":"Christmas, 6–9 PM full"};
+const left=(i,b,d)=>(i*3+b*5+d*2)%7,st=v=>v==0?"so":v<=2?"ff":"av";
+$("#nav").innerHTML=["Screens","Screen detail","Compose","Analytics"].map((n,i)=>`<button data-v="${i}">${n}</button>`).join("");
+function go(i){document.querySelectorAll(".view").forEach((v,k)=>v.classList.toggle("on",k==i));document.querySelectorAll("nav button").forEach((b,k)=>b.classList.toggle("on",k==i));scrollTo(0,0)}
+$("#nav").onclick=e=>{if(e.target.dataset.v)go(+e.target.dataset.v)};
+function draw(){
+let L=sc.map((s,i)=>({s,i})).filter(o=>(!$("#fr").value||o.s.r==$("#fr").value)&&(!$("#fi").value||o.s.io==$("#fi").value));
+const k=$("#fs").value;L.sort((a,b)=>k=="l"?b.s.l-a.s.l:k=="p"?a.s.p-b.s.p:b.s.m-a.s.m);
+$("#list").innerHTML=L.map(({s,i})=>`<div class="row"><div class="rh"><div><span class="rn" data-o="${i}">${s.n}</span>${rec?`<span class="mt">${s.m}% match</span>`:""}<div class="meta">${s.r} · ${s.io} · ${s.sz}</div>${s.t.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+<div class="lv"><span class="dot"></span><b>${s.l}</b> watching<br><span class="meta">avg ${s.a}</span></div><button class="hs ${fav.has(i)?'on':''}" data-f="${i}" aria-label="Shortlist">${fav.has(i)?"♥":"♡"}</button></div>
+<div class="chips">${B.map((b,j)=>{const v=left(i,j,dI),on=sel.has(i+"|"+j);return`<button class="chip ${on?'on':v==0?'so':''}" data-k="${i}|${j}" ${v==0?"disabled":""}><b>${b}</b><small>${v==0?"Booked":R(Math.round(s.p*(j==4?1.5:1)))}</small></button>`}).join("")}</div></div>`).join("")||`<p class="sub">No screens match these filters. Clear a filter to see more.</p>`;
+$("#map").innerHTML=`<rect width="300" height="300" fill="var(--sea)" rx="8"/><path d="M200 0H300V300H120Q100 260 60 240Q90 190 100 150Q130 90 140 60Q170 30 200 0Z" fill="var(--map)" stroke="var(--line)"/>`+sc.map((s,i)=>{const on=[...sel].some(k=>k.startsWith(i+"|"));return`<g style="cursor:pointer" data-o="${i}"><circle cx="${s.x}" cy="${s.y}" r="${rec&&s.m>=80?13:9}" fill="${on?'#1E4FD8':rec&&s.m>=80?'#F5A524':'#14213D'}" stroke="#fff" stroke-width="2"/><text x="${s.x+16}" y="${s.y+4}" font-size="11" font-weight="600" fill="#14213D">${s.l}</text></g>`}).join("");
+$("#pd").textContent="Slots repeat on the days you schedule for each screen.";
+let tot=0,imp=0,h="";sel.forEach(k=>{const[i,j]=k.split("|").map(Number),s=sc[i],c=Math.round(s.p*(j==4?1.5:1));tot+=c;imp+=s.a*3*(j==4?1.4:1);h+=`<li><span>${s.n}<br><span class="sm">${B[j]}</span></span><span>${R(c)} <button data-x="${k}" aria-label="Remove">✕</button></span></li>`});
+$("#pl").innerHTML=h||`<li class="sm">No slots yet. Tap a time slot to add it.</li>`;
+const cap=+$("#bud").value||0;
+$("#pt").innerHTML=`<div class="tot"><span>Slots</span><b>${sel.size}</b></div><div class="tot"><span>Est. views per day</span><b>${Math.round(imp).toLocaleString("en-IN")}</b></div><div class="tot"><span>Cost per 1,000 views</span><b>${imp?R(Math.round(tot/imp*1000)):"–"}</b></div><div class="tot"><span>Total per day</span><b style="color:${tot>cap?'var(--bad)':'inherit'}">${R(tot)}</b></div>${tot>cap?`<div class="sm" style="color:var(--bad)">Over your budget cap by ${R(tot-cap)}.</div>`:""}`}
+["#fr","#fi","#fs"].forEach(s=>$(s).onchange=draw);$("#bud").oninput=draw;
+$("#rec").onclick=()=>{rec=1;$("#fs").value="m";draw()};
+$("#list").onclick=e=>{const c=e.target.closest(".chip"),f=e.target.closest("[data-f]"),o=e.target.closest("[data-o]");
+if(c&&!c.disabled){sel.has(c.dataset.k)?sel.delete(c.dataset.k):sel.add(c.dataset.k)}else if(f){const i=+f.dataset.f;fav.has(i)?fav.delete(i):fav.add(i)}else if(o)return open(+o.dataset.o);draw()};
+$("#map").onclick=e=>{const o=e.target.closest("[data-o]");if(o)open(+o.dataset.o)};
+$("#pl").onclick=e=>{if(e.target.dataset.x){sel.delete(e.target.dataset.x);draw()}};
+$("#go2").onclick=()=>go(2);
+const addr=["Marine Drive Junction, Ernakulam","Edappally, ground floor atrium","Swaraj Round, Thrissur","Engineering College Road, Mannuthy, Thrissur","Mananchira, Kozhikode","SM Street, Kozhikode"];
+const hh=h=>h<12?h+"a":h==12?"12p":(h-12)+"p";
+function open(i){cur=i;const s=sc[i],io=s.io=="Indoor";
+$("#dn").textContent=s.n;$("#dm").textContent=`${s.r} · ${s.io} · ${s.sz}`;
+$("#d1").innerHTML=`<span class="dot"></span>${s.l}<small>Watching now (avg ${s.a})</small>`;$("#d3").innerHTML=`${s.m}%<small>Match with your campaign</small>`;$("#d4").innerHTML=`${io?"4.8":"6.4"} s<small>Average time looking at the screen</small>`;
+$("#kv").innerHTML=[["Address",addr[i]],["Resolution","1920 × 1080"],["Size",s.sz],["Placement",s.io+(io?", ground floor":", road facing")],["Brightness",io?"700 nits":"5,000 nits, auto-dimming"],["Operating hours","6 AM to 11 PM"],["Content loop","5 min, 7 advertisers"],["Sensors","Camera and people counter"],["Uptime, last 30 days","99.2%"]].map(r=>`<div>${r[0]}</div><div>${r[1]}</div>`).join("");
+$("#near").innerHTML=s.t.concat(["Bus stop 120 m","ATM 60 m"]).map(t=>`<span class="tag">${t}</span>`).join("");
+const rl=[],tj=s.t.join();if(/Temple|Church|Mosque/.test(tj))rl.push("No alcohol, meat or betting ads (place of worship nearby).");if(/College/.test(tj))rl.push("No alcohol, tobacco or gambling ads (college nearby).");if(!rl.length)rl.push("Standard content policy applies.");$("#rules").innerHTML=rl.map(r=>`<div style="margin-bottom:4px">${r}</div>`).join("");
+const base=[20,30,50,45,40,45,55,50,45,55,70,90,100,85,60,35,20],sh=i%3,pv=base.map((_,k)=>base[(k+sh)%17]),pk=pv.indexOf(Math.max(...pv)),qt=pv.indexOf(Math.min(...pv)),cn=v=>Math.round(v/100*s.l*1.8);
+$("#heat").innerHTML=pv.map((v,k)=>`<div title="${hh(6+k)}: about ${cn(v)} people" style="background:hsl(${Math.round((1-v/100)*120)},70%,42%)">${cn(v)}</div>`).join("");
+$("#hl").innerHTML=pv.map((_,k)=>`<div>${hh(6+k)}</div>`).join("");
+$("#hn").textContent=`Busiest around ${hh(6+pk)} (about ${cn(pv[pk])} people). Quietest around ${hh(6+qt)}. Numbers show people watching in that hour.`;
+const bars=a=>a.map(m=>`<div class="sm" style="display:flex;justify-content:space-between"><span>${m[0]}</span><b>${m[1]}%</b></div><div class="bar"><i style="width:${m[1]}%"></i></div>`).join("");
+$("#aud").innerHTML=bars([["Students",s.m>80?42:20],["Commuters",30],["Shoppers",io?38:18],["Families",16]]);
+$("#age").innerHTML=bars(s.m>80?[["Under 18",8],["18 to 24",46],["25 to 34",28],["35 to 54",14],["55+",4]]:[["Under 18",10],["18 to 24",20],["25 to 34",30],["35 to 54",28],["55+",12]]);
+$("#hwt").textContent=io?"What they are doing":"How people pass";$("#how").innerHTML=bars(io?[["Browsing",60],["Queuing",25],["Dining",15]]:[["Walking",55],["Two-wheeler",25],["Car or bus",20]]);
+slots();cal();go(1)}
+const rp=[2,3,2,4,6,2];
+function slots(){$("#slots").innerHTML=B.map((b,i)=>`<tr><td>${b}</td><td>${left(cur,i,dI)} of 6</td><td class="step"><button data-b="${i}" data-d="-1">−</button> <b>${rp[i]}</b> <button data-b="${i}" data-d="1">+</button></td><td>${R(rp[i]*(i==4?90:55)*10)}</td></tr>`).join("")}
+$("#slots").onclick=e=>{const b=e.target.dataset.b;if(b===undefined)return;const v=rp[b]+ +e.target.dataset.d;if(v>=0&&v<=8){rp[b]=v;slots()}};
+function cal(){const f=new Date(vy,vm,1),off=(f.getDay()+6)%7,n=new Date(vy,vm+1,0).getDate(),t0=new Date(2026,9,4);
+$("#cm").textContent=f.toLocaleString("en-US",{month:"long",year:"numeric"});
+$("#pm").disabled=vy==2026&&vm==9;$("#nm").disabled=(vy-2026)*12+vm-9>=12;
+let h=["M","T","W","T","F","S","S"].map(d=>`<div class="h">${d}</div>`).join("")+"<div></div>".repeat(off);
+for(let d=1;d<=n;d++){const k=`${vy}-${vm+1}-${d}`;h+=`<div data-k="${k}" class="${new Date(vy,vm,d)<t0?'past':''} ${days.has(k)?(cf[k]?'bad':'on'):''}">${d}</div>`}
+$("#cal").innerHTML=h;const bad=[...days].filter(k=>cf[k]).sort();
+$("#conf").innerHTML=(mv?`<div class="warn" style="border-color:var(--ok);background:#E6F6EC">${mv}</div>`:"")+(bad.length?`<div class="warn"><b>${bad.length} day${bad.length>1?"s":""} in conflict</b><ul class="sm" style="margin:4px 0 8px;padding-left:18px">${bad.map(k=>`<li>${k.split("-").reverse().join("/")}: ${cf[k]}</li>`).join("")}</ul><button class="pri" id="fix">Move to 3–6 PM</button> <button class="sec" id="skip">Skip these days</button></div>`:`<p class="sm" style="margin-top:12px">No conflicts. ${days.size} days planned.</p>`)}
+$("#cal").onclick=e=>{const k=e.target.dataset.k;if(!k||e.target.classList.contains("past"))return;days.has(k)?days.delete(k):days.add(k);mv="";cal()};
+$("#pm").onclick=()=>{vm--;if(vm<0){vm=11;vy--}cal()};$("#nm").onclick=()=>{vm++;if(vm>11){vm=0;vy++}cal()};
+function qs(m){const n=new Date(vy,vm+1,0).getDate();for(let d=1;d<=n;d++){const dt=new Date(vy,vm,d),k=`${vy}-${vm+1}-${d}`;if(dt<new Date(2026,9,4))continue;if(m=="c")days.delete(k);else if(m=="a"||(dt.getDay()>0&&dt.getDay()<6))days.add(k)}mv="";cal()}
+$("#qa").onclick=()=>qs("a");$("#qw").onclick=()=>qs("w");$("#qc").onclick=()=>qs("c");
+$("#conf").onclick=e=>{const bad=[...days].filter(k=>cf[k]);if(e.target.id=="fix"){bad.forEach(k=>delete cf[k]);mv=`Moved ${bad.length} day${bad.length>1?"s":""} to 3–6 PM. No conflicts left.`;cal()}if(e.target.id=="skip"){bad.forEach(k=>days.delete(k));mv="";cal()}};
+$("#back").onclick=()=>go(0);$("#add").onclick=()=>{sel.add(cur+"|4");draw();go(0)};
+const Z=[["Full screen",0,0,100,100]];let zs=0,tot=40,cuts=[],ss=0;
+function cv(){
+$("#cv").innerHTML=Z.map((z,i)=>`<div class="zone ${i==zs?'on':''}" data-z="${i}" style="left:${z[1]}%;top:${z[2]}%;width:${z[3]}%;height:${z[4]}%;z-index:${i}"><span>${z[0]}${Z.length==1?'<br><small>Add an image, video or slides</small>':''}</span></div>`).join("");
+const b=[0,...cuts,tot];
+$("#tl").innerHTML=b.slice(1).map((e,i)=>`<div class="${i==ss?'on':''}" data-t="${i}" style="flex:${e-b[i]}">${cuts.length?`Slide ${i+1} · ${e-b[i]} s`:`${tot} s · one slide`}</div>`).join("");
+$("#cuts").innerHTML=cuts.map((c,i)=>`<label class="sm">Slide ${i+1} ends at <input type="number" data-c="${i}" value="${c}" min="${(cuts[i-1]||0)+1}" max="${(cuts[i+1]||tot)-1}" style="width:64px;padding:5px"> s</label>`).join("")}
+$("#cv").onclick=e=>{const z=e.target.closest("[data-z]");if(z){zs=+z.dataset.z;$("#zi").textContent="Editing: "+Z[zs][0]+". Upload content or generate it with AI.";cv()}};
+$("#tl").onclick=e=>{const t=e.target.closest("[data-t]");if(t){ss=+t.dataset.t;cv()}};
+$("#addz").onclick=()=>{if(Z.length<5){const k=Z.length-1;Z.push(["Zone "+(Z.length+1),10+k*8,10+k*8,40,30]);zs=Z.length-1;cv()}};
+$("#rmz").onclick=()=>{if(Z.length>1){Z.splice(zs,1);zs=0;cv()}};
+$("#dur").onchange=()=>{tot=+$("#dur").value;cuts=cuts.filter(c=>c<tot);ss=0;cv()};
+$("#spl").onclick=()=>{const b=[0,...cuts,tot],a=b[ss],e=b[ss+1];if(e-a<2)return;cuts.push(Math.round((a+e)/2));cuts.sort((x,y)=>x-y);cv()};
+$("#mrg").onclick=()=>{if(ss<cuts.length){cuts.splice(ss,1);cv()}};
+$("#cuts").onchange=e=>{const i=e.target.dataset.c;if(i===undefined)return;const lo=(cuts[i-1]||0)+1,hi=(cuts[+i+1]||tot)-1;cuts[i]=Math.min(hi,Math.max(lo,+e.target.value||lo));cv()};
+const ps=["Draft","In review","Approved","Queued"];let pi=0;
+function pp(){$("#pipe").innerHTML=ps.map((p,i)=>`<span class="${i<=pi?'done':''}">${p}</span>`).join("")}
+$("#send").onclick=()=>{if(pi<3){pi++;pp()}};
+const a=[["6a",40],["9a",75],["12p",120],["3p",150],["6p",310],["9p",90]];
+$("#cols").innerHTML=a.map(x=>`<div class="${x[1]==310?'pk':''}" style="height:${x[1]/310*100}%"><span>${x[1]}</span></div>`).join("");$("#lab").innerHTML=a.map(x=>`<span>${x[0]}</span>`).join("");
+$("#mix").innerHTML=[["Students",44],["Commuters",27],["Shoppers",17],["Families",12]].map(m=>`<div class="sm" style="display:flex;justify-content:space-between"><span>${m[0]}</span><b>${m[1]}%</b></div><div class="bar"><i style="width:${m[1]}%"></i></div>`).join("");
+draw();cv();pp();go(0);
+</script></body></html>
